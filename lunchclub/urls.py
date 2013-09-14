@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'blog.views.landing_page'),
-    url(r'^lunchclub/', include('recipe.urls')),
+    url(r'^lunchclub/', include('blog.urls')),
     url(r'^rehdernomics/', include('rehdernomics.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )

@@ -1,5 +1,4 @@
 from django.test import TestCase
-from django.utils import timezone
 from django.core.urlresolvers import reverse
 
 from blog.models import Post
@@ -20,9 +19,9 @@ class HomePageViewTest(TestCase):
         self.assertIn(rehder_home, response.content)
 
     def test_blog_homepage(self):
+        """Should contain the two sample entries we create."""
         self.fail()
-        """
-        # Set up some posts
+
         post1 = Post(subject='My First Post', content='This is a test post.', pub_date=timezone.now())
         post1.save()
         post2 = Poll(question="life, the universe and everything", pub_date=timezone.now())
@@ -46,5 +45,3 @@ class HomePageViewTest(TestCase):
         self.assertIn(poll1_url, response.content)
         post2_url = reverse('blog.views.post', args=[post2.id,])
         self.assertIn(post2_url, response.content)
-
-"""
