@@ -49,6 +49,7 @@ USE_L10N = True
 USE_TZ = True
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
@@ -110,7 +111,7 @@ ROOT_URLCONF = 'lunchclub.urls'
 WSGI_APPLICATION = 'lunchclub.wsgi.application'
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, "templates"),
+    os.path.join(PROJECT_ROOT, "templates"),
 )
 
 INSTALLED_APPS = (

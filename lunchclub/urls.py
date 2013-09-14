@@ -5,7 +5,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', 'lunchclub.views.home', name='home'),
+    url(r'^$', 'blog.views.landing_page'),
     url(r'^lunchclub/', include('recipe.urls')),
     url(r'^rehdernomics/', include('rehdernomics.urls')),
     url(r'^admin/', include(admin.site.urls)),

@@ -10,7 +10,7 @@ class HomePageViewTest(TestCase):
     def test_root_url_links_to_rehdernomics_and_recipes(self):
         response = self.client.get('/')
 
-        self.assertTemplateUsed(response, 'site_home.html')
+        self.assertTemplateUsed(response, 'landing_page.html')
 
         # Check that we have links to both.
         blog_home = reverse('blog.views.home')
