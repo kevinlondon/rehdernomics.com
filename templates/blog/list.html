@@ -1,5 +1,10 @@
+Loop start!
+<br>
 {% for post in posts %}
-    {{ post }}
+    {{ post.title }}
+    <br>
+    {{ post.body }}
+    <br>
 {% endfor %}
 
 End of loop!

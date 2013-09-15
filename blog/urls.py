@@ -27,6 +27,7 @@ urlpatterns = patterns('blog.views',
     #url(r'^$', 'home', name="blog-home"),
     url(r'^$', ListView.as_view(
             queryset=Post.objects.all().order_by("-created"),
+            context_object_name="posts",
             template_name="blog/list.html",
             paginate_by = 3,
         ), name="blog-home"),
