@@ -22,9 +22,9 @@ class HomePageViewTest(TestCase):
         """Should contain the two sample entries we create."""
         self.fail()
 
-        post1 = Post(subject='My First Post', content='This is a test post.', pub_date=timezone.now())
+        post1 = Post(title='My First Post', body='This is a test post.', created=timezone.now())
         post1.save()
-        post2 = Poll(question="life, the universe and everything", pub_date=timezone.now())
+        post2 = Poll(title="life, the universe and everything", body="This is the body of the post.", created=timezone.now())
         post2.save()
 
         response = self.client.get('/')
