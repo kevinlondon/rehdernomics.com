@@ -26,10 +26,10 @@ class BlogFeed(Feed):
 urlpatterns = patterns('blog.views',
     #url(r'^$', 'home', name="blog-home"),
     url(r'^$', ListView.as_view(
-                 queryset=Post.objects.all().order_by("-created"),
-                 template_name="blog/list.html",
-                 paginate_by = 3,
-                 )),
+            queryset=Post.objects.all().order_by("-created"),
+            template_name="blog/list.html",
+            paginate_by = 3,
+        ), name="blog-home"),
     url(r'^(?P<year>\d{4})/(?P<day>\d{1,2})/(?P<slug>[-\w]+)/$',
                  view=DetailView.as_view(
                         model=Post, template_name="blog/post.html"
