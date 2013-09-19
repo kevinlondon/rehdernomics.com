@@ -1,10 +1,16 @@
-Loop start!
-<br>
-{% for post in posts %}
-    {{ post.title }}
-    <br>
-    {{ post.body }}
-    <br>
-{% endfor %}
+{% extends "blog/base.html" %}
 
-End of loop!
+Loop start!
+
+
+{% block content %}
+    <br>
+    {% for post in posts %}
+        {{ post.title }}
+        <br>
+        {{ post.body }}
+        <br>
+    {% endfor %}
+
+    End of loop!
+{% endblock content %}
