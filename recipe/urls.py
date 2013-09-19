@@ -2,16 +2,16 @@ from django.conf.urls import patterns, url
 from django.views.generic import ListView, DetailView
 from django.contrib.syndication.views import Feed
 
-from blog.models import Post
+from recipe.models import Recipe
 
 
-class BlogFeed(Feed):
-    title = "Kevin London's Blog"
-    description = "Programming, film, etc."
-    link = "/blog/feed"
+class RecipeFeed(Feed):
+    title = "Lunch Club Recipes"
+    description = "Recipes from the Lunch Club."
+    link = "/lunchclub/feed"
 
     def items(self):
-        return Post.objects.all().order_by("-created")[:5]
+        return Recipe.objects.all().order_by("-created")[:5]
 
     def item_title(self, item):
         return item.title
@@ -24,21 +24,19 @@ class BlogFeed(Feed):
 
 
 urlpatterns = patterns('blog.views',
-    #url(r'^$', 'home', name="blog-home"),
     url(r'^$', ListView.as_view(
-            queryset=Post.objects.all().order_by("-created"),
-            context_object_name="posts",
-            template_name="blog/list.html",
-            paginate_by = 3,
-        ), name="blog-home"),
+        queryset=Recipe.objects.all().order_by("-created"),
+        context_object_name="recipes",
+        template_name="recipe/list.html",
+        paginate_by=4,
+    ), name="recipe_home"),
+
     url(r'^(?P<year>\d{4})/(?P<day>\d{1,2})/(?P<slug>[-\w]+)/$',
-                 view=DetailView.as_view(
-                        model=Post, template_name="blog/post.html"
-                        ),
-                 name='blog_post_detail'),
+         view=DetailView.as_view(model=Recipe, template_name="recipe/detail.html"),
+         name='recipe_detail'),
     url(r'^archive/$', ListView.as_view(
-                 queryset=Post.objects.all().order_by("-created"),
-                 template_name="blog/archives.html")),
+        queryset=Recipe.objects.all().order_by("-created"),
+        template_name="blog/archives.html")),
     url(r'^tag/(?P<tag>\w+)$', 'tagpage'),
-    url(r'^feed/$', BlogFeed()),
+    url(r'^feed/$', RecipeFeed()),
 )

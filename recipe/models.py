@@ -1,25 +1,29 @@
 from django.db import models
 from django import forms
 
-from blog.utils import unique_slugify
+from recipe.utils import unique_slugify
 #from tinymce.widgets import TinyMCE
 #from taggit.managers import TaggableManager
 
 
-class Post(models.Model):
+class Recipe(models.Model):
     title = models.CharField(max_length=100)
-    body = models.TextField()
-    created = models.DateTimeField(auto_now_add=True)
-    #tags = TaggableManager()
     slug = models.SlugField(max_length=40, editable=False)
-    draft = models.IntegerField("Status", choices=([0, "Draft"],[1, "Published"]), default=0)
+    description = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    #creator = Person
+    #ingredients = None
+    #directions = None
+    #ratings = None
+    #commments = None
+    #tags = TaggableManager()
 
     def __unicode__(self):
         return self.title
 
     @models.permalink
     def get_absolute_url(self):
-        url_name = "blog_post_detail"
+        url_name = "recipe_detail"
         self.save()
         kwargs = {
             "slug": self.slug,
@@ -31,7 +35,7 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         slug_str = "%s" % (self.title)
         unique_slugify(self, slug_str)
-        super(Post, self).save()
+        super(Recipe, self).save()
 
 
 """
