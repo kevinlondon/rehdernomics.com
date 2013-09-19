@@ -4,13 +4,13 @@ from django.utils import timezone
 from recipe.models import Recipe
 
 
-class Recipe(TestCase):
+class RecipeTest(TestCase):
     def test_creating_a_new_recipe(self):
         # Create a new recipe object with its recipe.
 
         recipe = Recipe()
         recipe.title = "What's up?"
-        recipe.body = "This is a goldarn recipe."
+        recipe.description = "This is a goldarn recipe."
         recipe.created = timezone.now()
 
         # Check if we can save it to the db
@@ -24,4 +24,4 @@ class Recipe(TestCase):
 
         # And check that it has saved its two attrbs, question and pub_date
         self.assertEqual(only_recipe_in_db.title, recipe.title)
-        self.assertEqual(only_recipe_in_db.body, recipe.body)
+        self.assertEqual(only_recipe_in_db.description, recipe.description)

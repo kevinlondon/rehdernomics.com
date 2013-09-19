@@ -14,10 +14,10 @@ class HomePageViewTest(TestCase):
         self.assertTemplateUsed(response, 'landing_page.html')
 
         # Check that we have links to both.
-        recipe_home = reverse("recipe-home")
+        recipe_home = reverse("recipe_home")
         self.assertIn(recipe_home, response.content)
 
-        rehder_home = reverse("rehdernomics-home")
+        rehder_home = reverse("rehdernomics_home")
         self.assertIn(rehder_home, response.content)
 
     def test_recipe_homepage(self):

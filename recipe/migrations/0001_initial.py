@@ -8,33 +8,31 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Post'
-        db.create_table(u'blog_post', (
+        # Adding model 'Recipe'
+        db.create_table(u'recipe_recipe', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('title', self.gf('django.db.models.fields.CharField')(max_length=100)),
-            ('body', self.gf('django.db.models.fields.TextField')()),
-            ('created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('slug', self.gf('django.db.models.fields.SlugField')(max_length=40)),
-            ('draft', self.gf('django.db.models.fields.IntegerField')(default=0)),
+            ('description', self.gf('django.db.models.fields.TextField')()),
+            ('created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
-        db.send_create_signal(u'blog', ['Post'])
+        db.send_create_signal(u'recipe', ['Recipe'])
 
 
     def backwards(self, orm):
-        # Deleting model 'Post'
-        db.delete_table(u'blog_post')
+        # Deleting model 'Recipe'
+        db.delete_table(u'recipe_recipe')
 
 
     models = {
-        u'blog.post': {
-            'Meta': {'object_name': 'Post'},
-            'body': ('django.db.models.fields.TextField', [], {}),
+        u'recipe.recipe': {
+            'Meta': {'object_name': 'Recipe'},
             'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'draft': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
+            'description': ('django.db.models.fields.TextField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'slug': ('django.db.models.fields.SlugField', [], {'max_length': '40'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         }
     }
 
-    complete_apps = ['blog']
+    complete_apps = ['recipe']
