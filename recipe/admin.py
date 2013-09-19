@@ -1,10 +1,11 @@
 from django.contrib import admin
 
-from blog.models import Post  #PostAdminForm
+from .models import Recipe
 
-class BlogPostAdmin(admin.ModelAdmin):
-    """Admin class for blog posts."""
+
+class RecipePostAdmin(admin.ModelAdmin):
+    """Admin class for Recipe posts."""
     search_fields = ["title"]
     #form = PostAdminForm
 
-admin.site.register(Post, BlogPostAdmin)
+admin.site.register(Recipe, RecipePostAdmin)

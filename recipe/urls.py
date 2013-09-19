@@ -20,10 +20,10 @@ class RecipeFeed(Feed):
         return item.body
 
     def item_link(self, item):
-        return u"/blog/%d" % item.id
+        return u"/recipe/%d" % item.id
 
 
-urlpatterns = patterns('blog.views',
+urlpatterns = patterns('recipe.views',
     url(r'^$', ListView.as_view(
         queryset=Recipe.objects.all().order_by("-created"),
         context_object_name="recipes",
@@ -36,7 +36,7 @@ urlpatterns = patterns('blog.views',
          name='recipe_detail'),
     url(r'^archive/$', ListView.as_view(
         queryset=Recipe.objects.all().order_by("-created"),
-        template_name="blog/archives.html")),
+        template_name="recipe/archives.html")),
     url(r'^tag/(?P<tag>\w+)$', 'tagpage'),
     url(r'^feed/$', RecipeFeed()),
 )
