@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.utils import timezone
 
 from recipe.models import Recipe
+from .factories import UserFactory
 
 
 class RecipeTest(TestCase):
@@ -11,6 +12,7 @@ class RecipeTest(TestCase):
         recipe = Recipe()
         recipe.title = "What's up?"
         recipe.description = "This is a goldarn recipe."
+        recipe.author = UserFactory.create()
         recipe.created = timezone.now()
 
         # Check if we can save it to the db

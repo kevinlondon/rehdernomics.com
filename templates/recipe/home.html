@@ -1,14 +1,14 @@
-{% extends "blog/base.html" %}
+{% extends "recipe/base.html" %}
 
 Loop start!
 
 
 {% block content %}
     <br>
-    {% for post in posts %}
-        {{ post.title }}
+    {% for recipe in recipes %}
+        {{ recipe.title }}
         <br>
-        {{ post.body }}
+        {{ recipe.description }}
         <br>
     {% endfor %}
 

@@ -1,33 +1,16 @@
 from django.conf.urls import patterns, url
 from django.views.generic import ListView, DetailView
-from django.contrib.syndication.views import Feed
 
 from recipe.models import Recipe
 
 
-class RecipeFeed(Feed):
-    title = "Lunch Club Recipes"
-    description = "Recipes from the Lunch Club."
-    link = "/lunchclub/feed"
-
-    def items(self):
-        return Recipe.objects.all().order_by("-created")[:5]
-
-    def item_title(self, item):
-        return item.title
-
-    def item_description(self, item):
-        return item.body
-
-    def item_link(self, item):
-        return u"/recipe/%d" % item.id
 
 
 urlpatterns = patterns('recipe.views',
     url(r'^$', ListView.as_view(
         queryset=Recipe.objects.all().order_by("-created"),
         context_object_name="recipes",
-        template_name="recipe/list.html",
+        template_name="recipe/home.html",
         paginate_by=4,
     ), name="recipe_home"),
 
