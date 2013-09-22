@@ -9,7 +9,7 @@ from .views import RecipeFeed
 
 urlpatterns = patterns('recipe.views',
     url(r'^$', 'home', name='recipe_home'),
-    url(r'^(?P<year>\d{4})/(?P<month>)\d{1,2}/(?P<day>\d{1,2})/(?P<slug>[-\w]+)/$',
+    url(r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{1,2})/(?P<slug>[-\w]+)/$',
          view=DetailView.as_view(model=Recipe, template_name="recipe/detail.html"),
          name='recipe_detail'),
     url(r'^archive/$', ListView.as_view(

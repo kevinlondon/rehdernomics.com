@@ -1,5 +1,7 @@
 {% extends "recipe/base.html" %}
 
+{% block page_title %}{{ recipe.title }} | {% endblock page_title %}
+
 {% block page_content %}
     <a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>
     <ul>

@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.utils import timezone
 
 from recipe.models import Recipe
-from .factories import UserFactory
+from .factories import UserFactory, RecipeFactory
 
 
 class RecipeTest(TestCase):
@@ -27,3 +27,14 @@ class RecipeTest(TestCase):
         # And check that it has saved its two attrbs, question and pub_date
         self.assertEqual(only_recipe_in_db.title, recipe.title)
         self.assertEqual(only_recipe_in_db.description, recipe.description)
+
+    def test_absolute_url(self):
+        recipe = RecipeFactory.create(title="Test Title")
+        url = recipe.get_absolute_url()
+        # Check for identifying times in url
+        self.assertIn(str(recipe.created.year), url)
+        self.assertIn(str(recipe.created.month), url)
+        self.assertIn(str(recipe.created.day), url)
+
+        # Test that at least a piece of the title is in the URL
+        self.assertIn(recipe.title.split()[0].lower(), url)
