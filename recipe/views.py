@@ -6,8 +6,8 @@ from recipe.models import Recipe
 
 
 def home(request):
-    context = {'recipes': Recipe.objects.all()}
-    return render(request, 'home.html', context)
+    context = {'recipes': Recipe.objects.all().order_by('-created')}
+    return render(request, 'recipe/home.html', context)
 
 
 def landing_page(request):
