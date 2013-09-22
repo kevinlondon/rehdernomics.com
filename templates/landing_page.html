@@ -1,3 +1,12 @@
-<a href="{% url 'rehdernomics_home' %}">Learn more about Rehdernomics!</a>
-<a href="{% url 'recipe_home' %}">Check out past Lunch Club meals</a>
-<a href="/admin/">Log in as admin</a>
+{% extends 'base.html' %}
+
+{% block page_content %}
+<h1>Rehdernomics Home</h1>
+<ul>
+    <li><a href="{% url 'rehdernomics_home' %}">Rehdernomics!</a></li>
+
+    <li><a href="{% url 'recipe_home' %}">Lunch Club meals</a></li>
+
+    <li><a href="/admin/">Log in as admin</a></li>
+</ul>
+{% endblock page_content %}

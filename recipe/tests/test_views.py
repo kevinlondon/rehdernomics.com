@@ -37,7 +37,6 @@ class HomePageViewTest(TestCase):
         self.assertIn(str(recipe.created.month), response.content)
         self.assertIn(recipe.author.first_name, response.content)
 
-
     def test_recipe_homepage(self):
         """Should contain the two sample entries we create."""
 

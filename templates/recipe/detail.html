@@ -1,6 +1,6 @@
 {% extends "recipe/base.html" %}
 
-{% block content %}
+{% block page_content %}
     <a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>
     {{ recipe.created }}
     {{ recipe.author }}
@@ -9,4 +9,4 @@
     {{ recipe.ingredients.all }}
     {{ recipe.directions }}
     <br>
-{% endblock content %}
+{% endblock page_content %}

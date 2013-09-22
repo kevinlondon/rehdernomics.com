@@ -1,16 +1,15 @@
 {% extends "recipe/base.html" %}
 
-Loop start!
+{% block page_title %}Lunch Club Recipes | {% endblock page_title %}
 
-
-{% block content %}
-    <br>
+{% block page_content %}
+    <h1>Lunch Club Recipes</h1>
     {% for recipe in recipes %}
         <a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>
         <br>
         {{ recipe.description }}
         <br>
+    {% empty %}
+        Hm, doesn't look like there's any recipes yet! Please check back soon.
     {% endfor %}
-
-    End of loop!
-{% endblock content %}
+{% endblock page_content %}
