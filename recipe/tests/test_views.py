@@ -21,6 +21,23 @@ class HomePageViewTest(TestCase):
         rehder_home = reverse("rehdernomics_home")
         self.assertIn(rehder_home, response.content)
 
+    def test_recipe_detail(self):
+        """Should show all relevant information about recipe."""
+        recipe = RecipeFactory.create(
+            title="Test Recipe",
+            description="My goodness is it delicious!",
+        )
+        response = self.client.get(recipe.get_absolute_url())
+        self.assertTemplateUsed(response, 'recipe/detail.html')
+
+        # Check that chief components all exist in page.
+        self.assertIn(recipe.title, response.content)
+        self.assertIn(recipe.description, response.content)
+        #self.assertIn(recipe.ingredient_set, response.content)
+        self.assertIn(str(recipe.created.month), response.content)
+        self.assertIn(recipe.author.first_name, response.content)
+
+
     def test_recipe_homepage(self):
         """Should contain the two sample entries we create."""
 
