@@ -55,7 +55,7 @@ class HomePageViewTest(TestCase):
         self.assertIn(recipe2.title, response.content)
 
         # Check that the page also contains the urls to individual recipes
-        recipe1_url = reverse('recipe.views.detail', args=[recipe1.id, ])
+        recipe1_url = recipe1.get_absolute_url()
         self.assertIn(recipe1_url, response.content)
-        recipe2_url = reverse('recipe.views.detail', args=[recipe2.id, ])
+        recipe2_url = recipe2.get_absolute_url()
         self.assertIn(recipe2_url, response.content)

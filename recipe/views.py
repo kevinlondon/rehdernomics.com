@@ -5,13 +5,13 @@ from django.contrib.syndication.views import Feed
 from recipe.models import Recipe
 
 
+def landing_page(request):
+    return render(request, 'landing_page.html')
+
+
 def home(request):
     context = {'recipes': Recipe.objects.all().order_by('-created')}
     return render(request, 'recipe/home.html', context)
-
-
-def landing_page(request):
-    return render(request, 'landing_page.html')
 
 
 def tagpage(request, tag):

@@ -28,6 +28,7 @@ class Recipe(models.Model):
         kwargs = {
             "slug": self.slug,
             "year": self.created.year,
+            "month": self.created.month,
             "day": str(self.created.day),
         }
         return (url_name, (), kwargs)

@@ -6,7 +6,7 @@ Loop start!
 {% block content %}
     <br>
     {% for recipe in recipes %}
-        {{ recipe.title }}
+        <a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>
         <br>
         {{ recipe.description }}
         <br>
