@@ -31,6 +31,7 @@ class RecipeTest(TestCase):
     def test_absolute_url(self):
         recipe = RecipeFactory.create(title="Test Title")
         url = recipe.get_absolute_url()
+
         # Check for identifying times in url
         self.assertIn(str(recipe.created.year), url)
         self.assertIn(str(recipe.created.month), url)
@@ -38,3 +39,11 @@ class RecipeTest(TestCase):
 
         # Test that at least a piece of the title is in the URL
         self.assertIn(recipe.title.split()[0].lower(), url)
+
+
+class IngredientsTest(TestCase):
+    def test_adding_ingredients_to_a_recipe(self):
+        self.fail()
+        recipe = RecipeFactory.create()
+        olives = Ingredient()
+
