@@ -3,12 +3,14 @@
 {% block page_title %}{{ recipe.title }} | {% endblock page_title %}
 
 {% block page_content %}
-    <a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>
-    <ul>
-        <li>by {{ recipe.author }}</li>
-        <li>on {{ recipe.created }}</li>
-        <li>Description: {{ recipe.description }}</li>
-        <li>Ingredients: {{ recipe.ingredients.all }}</li>
-        <li>Directions: {{ recipe.directions }}</li>
-    <br>
+    <div class="well">
+        <a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>
+        <ul>
+            <li>by {{ recipe.author }}</li>
+            <li>on {{ recipe.created }}</li>
+            <li>Description: {{ recipe.description }}</li>
+            <li>Ingredients: {{ recipe.ingredients.all }}</li>
+            <li>Directions: {{ recipe.directions }}</li>
+        </ul>
+    </div>
 {% endblock page_content %}

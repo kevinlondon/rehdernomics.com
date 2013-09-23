@@ -9,7 +9,30 @@
         <link href="{% static "css/flat-ui.css" %}" rel="stylesheet">
     </head>
     <body>
-        {% block top_nav %}{% endblock top_nav %}
+       <div class="navbar-wrapper">
+            <div class="container">
+                <div class="navbar navbar-inverse">
+                    <div class="navbar-inner">
+                        <a class="brand" href="#">Rehdernomics</a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav">
+                                <li><a href="{% url 'recipe_home' %}">Lunch Club Recipes</a></li>
+                                <li><a href="{% url 'rehdernomics_home' %}">About Rehdernomics</a></li>
+                            </ul>
+                        </div>
+
+                        <div style="float: right;">
+                            <ul class="nav">
+                                <li><a href="#">Login</a></li>
+                                <li><a href="#">Search!</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% block top_nav %} {% endblock top_nav %}
+
         <div class="row-fluid">
             <div class="span2 offset1">
                 <!-- Left Nav -->
@@ -26,9 +49,11 @@
         </div>
 
         <div class="row-fluid">
-            Copyright 2013 - Lunch Club LLC.
-            Created by <a href="http://kevinlondon.com">Kevin London</a>.
-            {% block footer_content %}{% endblock footer_content %}
+            <div class="span4 offset4">
+                Copyright 2013 - Lunch Club LLC.
+                Created by <a href="http://kevinlondon.com">Kevin London</a>.
+                {% block footer_content %}{% endblock footer_content %}
+            </div>
         </div>
     </body>
 </html>
