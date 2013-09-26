@@ -18,15 +18,17 @@
                             <ul class="nav">
                                 <li><a href="{% url 'recipe_home' %}">Lunch Club Recipes</a></li>
                                 <li><a href="{% url 'rehdernomics_home' %}">About Rehdernomics</a></li>
-                                <li><a href="#">Login</a></li>
+                                <li><a href="/admin/">Admin</a></li>
                             </ul>
                         </div>
 
-                        <div class="pull-right">
-                            <form class="navbar-search">
-                                <input type="text" class="search-query" placeholder="Search Recipes">
-                            </form>
-                        </div>
+                        {% comment %}
+                            <div class="pull-right">
+                                <form class="navbar-search">
+                                    <input type="text" class="search-query" placeholder="Search Recipes">
+                                </form>
+                            </div>
+                        {% endcomment %}
                     </div>
                 </div>
             </div>
