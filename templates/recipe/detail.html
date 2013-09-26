@@ -6,9 +6,10 @@
     <div class="well">
         <a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>
         <ul>
+            <li><img src="{{ recipe.image.url }}"></li>
             <li>by {{ recipe.author }}</li>
             <li>on {{ recipe.created }}</li>
-            <li>Description: {{ recipe.description }}</li>
+            <li>{{ recipe.description }}</li>
             <li>Ingredients: {{ recipe.ingredients.all }}</li>
             <li>Directions: {{ recipe.directions }}</li>
         </ul>

@@ -6,7 +6,7 @@ from .models import Recipe
 class RecipePostAdmin(admin.ModelAdmin):
     """Admin class for Recipe posts."""
     search_fields = ["title"]
-    fields = ('title', 'description', 'directions')
+    fields = ('title', 'image', 'description', 'directions')
     #form = PostAdminForm
 
     def save_model(self, request, obj, form, change): 

@@ -14,8 +14,7 @@ class Recipe(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
     description = models.TextField()
     directions = models.TextField()
-    hero_image = models.ImageField(upload_to='media')
-    additional_image = models.ImageField(upload_to='media', null=True)
+    image = models.ImageField(upload_to='recipes', null=True)
     #ratings = None
     #commments = None
     #tags = TaggableManager()
