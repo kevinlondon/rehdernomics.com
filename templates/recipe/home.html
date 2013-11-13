@@ -6,12 +6,19 @@
     <h1>Lunch Club Recipes</h1>
     {% for recipe in recipes %}
         <div class="well">
-            <a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>
-            <ul>
-                <li>by {{ recipe.author }}</li>
-                <li>on {{ recipe.created }}</li>
-                <li>{{ recipe.description }}</li>
-            </ul>
+            <div class="row">
+                <div class="span4 recipe-image">
+                    <img src="http://placehold.it/200x150">
+                </div>
+                <div class="span7">
+                    <a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>
+                    <ul>
+                        <li>by {{ recipe.author }}</li>
+                        <li>on {{ recipe.created }}</li>
+                        <li>{{ recipe.description }}</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     {% empty %}
         Hm, doesn't look like there's any recipes yet! Please check back soon.
