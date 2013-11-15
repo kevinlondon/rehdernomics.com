@@ -125,6 +125,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'south',
+    'crispy_forms',
     'recipe',
     'rehdernomics',
 )
@@ -168,6 +169,8 @@ DATABASES['default'] = dj_database_url.config(default='postgresql://localhost/re
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+CRISPY_TEMPLATE_PACK = "bootstrap"
 
 
 

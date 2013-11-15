@@ -22,4 +22,5 @@
     {% empty %}
         Hm, doesn't look like there's any recipes yet! Please check back soon.
     {% endfor %}
+    <a class="btn btn-primary" href="{% url 'recipe_new' %}">Submit Recipe</a>
 {% endblock page_content %}

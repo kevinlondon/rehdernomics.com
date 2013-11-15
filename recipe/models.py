@@ -8,6 +8,7 @@ from .utils import unique_slugify
 
 
 class Recipe(models.Model):
+    """A single, self-contained recipe with ingredients."""
     title = models.CharField(max_length=100)
     slug = models.SlugField(max_length=40, editable=False)
     created = models.DateTimeField(auto_now_add=True)
@@ -42,6 +43,7 @@ class Recipe(models.Model):
 
 
 class Ingredient(models.Model):
+    """One element in a recipe."""
     name = models.CharField(max_length=100)
 
     def __unicode__(self):
@@ -49,6 +51,7 @@ class Ingredient(models.Model):
 
 
 class RecipeIngredient(models.Model):
+    """Contains additional information about each ingredient."""
     recipe = models.ForeignKey(Recipe)
     ingredient = models.ForeignKey(Ingredient)
     quantity = models.CharField(max_length=20)

@@ -1,0 +1,7 @@
+{% extends "recipe/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block page_content %}
+    {% crispy recipe_form recipe_form.helper %}
+{% endblock page_content %}

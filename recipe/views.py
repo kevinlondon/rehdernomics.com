@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.contrib.syndication.views import Feed
+from django.contrib.auth.decorators import login_required
 
-from recipe.models import Recipe
+from .models import Recipe
+from .forms import RecipeForm
 
 
 def landing_page(request):
@@ -21,6 +23,17 @@ def tagpage(request, tag):
         "tag": tag
     })
 
+
+@login_required(redirect_field_name='redirect_to')
+def new_recipe(request):
+    recipe_form = RecipeForm()
+    return render(request, 'recipe/new_recipe.html', {
+        'recipe_form': recipe_form,
+    })
+
+def submit_recipe(request):
+    return render(request, 'recipe/new_recipe.html', {
+    })
 
 class RecipeFeed(Feed):
     title = "Lunch Club Recipes"

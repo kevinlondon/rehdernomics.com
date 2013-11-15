@@ -9,6 +9,8 @@ urlpatterns = patterns('',
     url(r'^lunchclub/', include('recipe.urls')),
     url(r'^rehdernomics/', include('rehdernomics.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'account/login.html'}),
+
 )
 
 if settings.DEBUG:
