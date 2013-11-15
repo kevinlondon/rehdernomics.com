@@ -1,8 +1,8 @@
 from django.test import TestCase
 from django.utils import timezone
 
-from recipe.models import Recipe
-from .factories import UserFactory, RecipeFactory
+from recipe.models import Recipe, Ingredient, RecipeIngredient
+from .factories import UserFactory, RecipeFactory, IngredientFactory
 
 
 class RecipeTest(TestCase):
@@ -43,7 +43,11 @@ class RecipeTest(TestCase):
 
 class IngredientsTest(TestCase):
     def test_adding_ingredients_to_a_recipe(self):
-        self.fail()
         recipe = RecipeFactory.create()
-        olives = Ingredient()
+        olive = IngredientFactory.create(name="Olives")
+        requirement = RecipeIngredient.objects.create(recipe=recipe, ingredient=olive, quantity=5, ingredient_state="Chopped")
+        self.assertEquals("%s" % requirement.ingredient, "Olives")
+        self.assertEquals("%s" % requirement, "5 Chopped Olives")
+        self.assertIn(olive, recipe.ingredients.all())
+
 

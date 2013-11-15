@@ -14,7 +14,9 @@ class Recipe(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
     description = models.TextField()
     directions = models.TextField()
+    ingredients = models.ManyToManyField('Ingredient', through="RecipeIngredient")
     #ratings = None
+    #reviews = None
     #commments = None
     #tags = TaggableManager()
 
@@ -43,18 +45,18 @@ class Ingredient(models.Model):
     name = models.CharField(max_length=100)
 
     def __unicode__(self):
-        return self.name
+        return "%s" % self.name
 
 
-class RecipeIngredientRequirement(models.Model):
+class RecipeIngredient(models.Model):
     recipe = models.ForeignKey(Recipe)
     ingredient = models.ForeignKey(Ingredient)
     quantity = models.CharField(max_length=20)
-    ingredient_state = models.CharField(max_length=30, default="")
+    ingredient_state = models.CharField(max_length=30, default="", null=True)
 
     def __unicode__(self):
-        return "%s of %s, %s" % (
-            self.quantity, self.ingredient, self.ingredient_state
+        return "%s %s %s" % (
+            self.quantity, self.ingredient_state, self.ingredient
         )
 
 """

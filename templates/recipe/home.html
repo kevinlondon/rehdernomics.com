@@ -7,15 +7,14 @@
     {% for recipe in recipes %}
         <div class="well">
             <div class="row">
-                <div class="span4 recipe-image">
-                    <img src="http://placehold.it/200x150">
+                <div class="span4">
+                    <img class="recipe-image" src="http://placehold.it/200x150">
                 </div>
-                <div class="span7">
+                <div class="span6 offset1">
                     <a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>
                     <ul>
-                        <li>by {{ recipe.author }}</li>
-                        <li>on {{ recipe.created }}</li>
-                        <li>{{ recipe.description }}</li>
+                        <li>by {{ recipe.author }} on {{ recipe.created }}</li>
+                        <li>Rating: {{ recipe.rating }}({{ recipe.reviews.count }} reviews)</li>
                     </ul>
                 </div>
             </div>

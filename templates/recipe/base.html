@@ -1,16 +1,20 @@
 {% extends "base.html" %}
 
-{% block top_nav %}
+{% block additional_css %}
+	{% load staticfiles %}
+    <link href="{% static 'css/lunchclub.css' %}" rel="stylesheet">
+{% endblock additional_css %}
 
+{% block top_nav %}
 {% endblock %}
 
 {% block left_nav %}
     <div class="well sidebar-nav">
         <ul class="nav nav-list">
-            <li><a href="#">About</a></li>
-            <li><a href="#">Archive</a></li>
+            <li><a href="#">Recipes</a></li>
             <li><a href="#">Ingredients</a></li>
-            <li><a href="#">Cooks</a></li>
+            <li><a href="#">Clubbers</a></li>
+            <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
     </div>
