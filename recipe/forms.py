@@ -22,7 +22,7 @@ class RecipeForm(forms.Form):
 
     directions = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'direction_field'}),
-        label="Directions",
+        label="Recipe Directions",
         required=True,
     )
 
@@ -41,7 +41,7 @@ class RecipeForm(forms.Form):
 
 class IngredientForm(forms.Form):
     name = forms.CharField(
-        label="Ingredient Name",
+        label="Name",
         required=False,
     )
 

@@ -27,19 +27,33 @@ def tagpage(request, tag):
 
 @login_required(redirect_field_name='redirect_to')
 def new_recipe(request):
-    recipe_form = RecipeForm()
+    recipe_form = RecipeForm(prefix="recipe")
     ingredient_formset = formset_factory(IngredientForm, extra=3)
     ingredient_formset_helper = IngredientFormSetHelper()
     return render(request, 'recipe/new_recipe.html', {
         'recipe_form': recipe_form,
-        'ingredient_formset': ingredient_formset(),
+        'ingredient_formset': ingredient_formset(prefix="ingredient"),
         'ingredient_formset_helper': ingredient_formset_helper,
     })
 
 
 def submit_recipe(request):
-    print request.POST
-    print request
+    if request.method == "POST":
+        recipe_form = RecipeForm(request.POST, prefix="recipe")
+        ingredient_formset = formset_factory(IngredientForm)
+        ingredient_form = ingredient_formset(request.POST, prefix="ingredient")
+        if recipe_form.is_valid() and ingredient_form.is_valid():
+            r_info = recipe_form.cleaned_data
+            recipe = Recipe.objects.create(
+                name=r_info['recipe_name'], description=r_info['description'],
+                directions=r_info['directions'], image=r_info['image'],
+            )
+            print recipe
+            print recipe_form.cleaned_data
+            print ingredient_form.cleaned_data
+
+    assert False
+
     return render(request, 'recipe/home.html', {
     })
 

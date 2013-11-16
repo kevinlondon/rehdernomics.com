@@ -16,6 +16,7 @@ class Recipe(models.Model):
     description = models.TextField()
     directions = models.TextField()
     ingredients = models.ManyToManyField('Ingredient', through="RecipeIngredient")
+    image = models.ImageField(upload_to="recipe_images", null=True)
     #ratings = None
     #reviews = None
     #commments = None

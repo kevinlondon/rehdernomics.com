@@ -15,9 +15,8 @@
 
 {% block page_content %}
 <form action="{% url 'recipe_submit' %}" method="post">
-    {% csrf_token %}
     <h5>Recipe</h5>
-    {% crispy recipe_form %}
+    {% crispy recipe_form recipe_form.helper %}
 
     <h5>Ingredients</h5>
     {% crispy ingredient_formset  ingredient_formset_helper %}
