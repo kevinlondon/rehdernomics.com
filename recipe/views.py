@@ -45,8 +45,11 @@ def submit_recipe(request):
         if recipe_form.is_valid() and ingredient_form.is_valid():
             r_info = recipe_form.cleaned_data
             recipe = Recipe.objects.create(
-                name=r_info['recipe_name'], description=r_info['description'],
-                directions=r_info['directions'], image=r_info['image'],
+                title=r_info['recipe_name'],
+                author=request.user,
+                description=r_info['description'],
+                directions=r_info['directions'],
+                image=r_info['image'],
             )
             print recipe
             print recipe_form.cleaned_data
