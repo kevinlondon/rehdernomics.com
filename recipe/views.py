@@ -1,10 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.urlresolvers import reverse
 from django.contrib.syndication.views import Feed
 from django.contrib.auth.decorators import login_required
 from django.forms.formsets import formset_factory
 
-from .models import Recipe
+from .models import Recipe, Ingredient, RecipeIngredient
 from .forms import RecipeForm, IngredientForm, IngredientFormSetHelper
 
 
@@ -51,14 +51,22 @@ def submit_recipe(request):
                 directions=r_info['directions'],
                 image=r_info['image'],
             )
-            print recipe
-            print recipe_form.cleaned_data
-            print ingredient_form.cleaned_data
 
-    assert False
+            for i_info in ingredient_form.cleaned_data:
+                if not i_info:
+                    continue
 
-    return render(request, 'recipe/home.html', {
-    })
+                name = i_info['name']
+                ingredient = Ingredient.objects.get_or_create(name=name)
+                requirement = RecipeIngredient.objects.create(
+                    recipe=recipe,
+                    ingredient=ingredient,
+                    quantity=i_info['quantity'],
+                    ingredient_state=i_info['state'],
+                )
+        return redirect(recipe.get_absolute_url())
+    else:
+        return redirect('recipe_new')
 
 
 class RecipeFeed(Feed):
