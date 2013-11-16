@@ -2,9 +2,10 @@ from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.contrib.syndication.views import Feed
 from django.contrib.auth.decorators import login_required
+from django.forms.formsets import formset_factory
 
 from .models import Recipe
-from .forms import RecipeForm
+from .forms import RecipeForm, IngredientForm, IngredientFormSetHelper
 
 
 def landing_page(request):
@@ -27,8 +28,12 @@ def tagpage(request, tag):
 @login_required(redirect_field_name='redirect_to')
 def new_recipe(request):
     recipe_form = RecipeForm()
+    ingredient_formset = formset_factory(IngredientForm, extra=5)
+    ingredient_formset_helper = IngredientFormSetHelper()
     return render(request, 'recipe/new_recipe.html', {
         'recipe_form': recipe_form,
+        'ingredient_formset': ingredient_formset(),
+        'ingredient_formset_helper': ingredient_formset_helper,
     })
 
 def submit_recipe(request):

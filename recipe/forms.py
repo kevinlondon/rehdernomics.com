@@ -8,7 +8,7 @@ from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
 
 class RecipeForm(forms.Form):
     recipe_name = forms.CharField(
-        label="Name",
+        label="Recipe Name",
         max_length=100,
         required=True,
     )
@@ -31,8 +31,8 @@ class RecipeForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(RecipeForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_id = 'id-recipeForm'
-        self.helper.form_class = 'recipeForm'
+        self.helper.form_id = 'id-recipe_form'
+        self.helper.form_class = 'recipe_form'
         self.helper.form_method = 'post'
         self.helper.form_action = 'submit_recipe'
 
@@ -40,18 +40,42 @@ class RecipeForm(forms.Form):
 
 
 class IngredientForm(forms.Form):
-    name = forms.CharField(
-        label="Name",
-        required=True,
-    )
-
     quantity = forms.IntegerField(
         label="Quantity",
-        required=True,
+        required=False,
+    )
+
+    name = forms.CharField(
+        label="Ingredient",
+        required=False,
     )
 
     state = forms.CharField(
         label="State (chopped, minced, etc.)",
-        required=True,
+        required=False,
     )
+
+    def __init__(self, *args, **kwargs):
+        super(IngredientForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = "ingredient_form"
+        self.helper.render_required_fields = True
+        self.helper.template = 'bootstrap/table_inline_formset.html'
+
+
+class IngredientFormSetHelper(FormHelper):
+    def __init__(self, *args, **kwargs):
+        super(IngredientFormSetHelper, self).__init__(*args, **kwargs)
+        self.form_class = "ingredient_form"
+        self.render_required_fields = True
+        self.template = 'bootstrap/table_inline_formset.html'
+
+
+        self.form_method = 'post'
+        self.layout = Layout(
+            'favorite_color',
+            'favorite_food',
+        )
+        self.render_required_fields = True,
+
 
