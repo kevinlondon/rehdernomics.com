@@ -28,7 +28,7 @@ def tagpage(request, tag):
 @login_required(redirect_field_name='redirect_to')
 def new_recipe(request):
     recipe_form = RecipeForm()
-    ingredient_formset = formset_factory(IngredientForm, extra=5)
+    ingredient_formset = formset_factory(IngredientForm, extra=3)
     ingredient_formset_helper = IngredientFormSetHelper()
     return render(request, 'recipe/new_recipe.html', {
         'recipe_form': recipe_form,

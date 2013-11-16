@@ -38,13 +38,13 @@ class RecipeForm(forms.Form):
 
 
 class IngredientForm(forms.Form):
-    quantity = forms.IntegerField(
-        label="Quantity",
+    name = forms.CharField(
+        label="Ingredient Name",
         required=False,
     )
 
-    name = forms.CharField(
-        label="Ingredient",
+    quantity = forms.IntegerField(
+        label="Quantity",
         required=False,
     )
 

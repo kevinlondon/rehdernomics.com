@@ -1,9 +1,28 @@
 {% extends "recipe/base.html" %}
 
 {% load crispy_forms_tags %}
+{% load staticfiles %}
+
+{% block script %}
+<script type="text/javascript" src="{% static 'js/lunchclub.new-recipe.js' %}"></script>
+
+<script>
+    $('#add_more').click(function() {
+        cloneMore('tr:last', 'service');
+    });
+</script>
+{% endblock script %}
 
 {% block page_content %}
 
+    <h5>Recipe</h5>
     {% crispy recipe_form  %}
+
+    <h5>Ingredients</h5>
     {% crispy ingredient_formset  ingredient_formset_helper %}
+
+<input type="button" value="Add Ingredient" id="add_more">
+
+
 {% endblock page_content %}
+
