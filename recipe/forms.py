@@ -35,6 +35,7 @@ class RecipeForm(forms.Form):
         super(RecipeForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_id = 'id-recipe_form'
+        self.helper.form_tag = False
         self.helper.form_class = 'recipe_form'
 
 
@@ -54,20 +55,13 @@ class IngredientForm(forms.Form):
         required=False,
     )
 
-    def __init__(self, *args, **kwargs):
-        super(IngredientForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_class = "ingredient_form"
-        self.helper.render_required_fields = True
-        self.helper.template = 'bootstrap/table_inline_formset.html'
-
 
 class IngredientFormSetHelper(FormHelper):
     def __init__(self, *args, **kwargs):
         super(IngredientFormSetHelper, self).__init__(*args, **kwargs)
         self.form_class = "ingredient_form"
         self.render_required_fields = True
+        self.form_tag = False
         self.template = 'bootstrap/table_inline_formset.html'
-        self.render_required_fields = True,
 
 

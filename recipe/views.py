@@ -36,9 +36,13 @@ def new_recipe(request):
         'ingredient_formset_helper': ingredient_formset_helper,
     })
 
+
 def submit_recipe(request):
-    return render(request, 'recipe/new_recipe.html', {
+    print request.POST
+    print request
+    return render(request, 'recipe/home.html', {
     })
+
 
 class RecipeFeed(Feed):
     title = "Lunch Club Recipes"

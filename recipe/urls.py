@@ -8,6 +8,7 @@ from .views import RecipeFeed
 urlpatterns = patterns('recipe.views',
     url(r'^$', 'home', name='recipe_home'),
     url(r'^new_recipe/$', 'new_recipe', name="recipe_new"),
+    url(r'^submit_recipe/$', 'submit_recipe', name="recipe_submit"),
     url(r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{1,2})/(?P<slug>[-\w]+)/$',
          view=DetailView.as_view(model=Recipe, template_name="recipe/detail.html"),
          name='recipe_detail'),
