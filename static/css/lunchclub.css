@@ -1,3 +1,7 @@
 .recipe-image {
 	margin-left: 25px;
 }
+
+#description_field {
+    height: 400px;
+}

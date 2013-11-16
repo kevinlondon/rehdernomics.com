@@ -14,11 +14,13 @@ class RecipeForm(forms.Form):
     )
 
     description = forms.CharField(
+        widget=forms.TextInput(attrs={'class':'description_field', 'size': '400'}),
         label="Description",
         required=True,
     )
 
     directions = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'direction_field'}),
         label="Directions",
         required=True,
     )
@@ -33,10 +35,6 @@ class RecipeForm(forms.Form):
         self.helper = FormHelper()
         self.helper.form_id = 'id-recipe_form'
         self.helper.form_class = 'recipe_form'
-        self.helper.form_method = 'post'
-        self.helper.form_action = 'submit_recipe'
-
-        self.helper.add_input(Submit('submit', 'Submit'))
 
 
 class IngredientForm(forms.Form):
@@ -69,13 +67,6 @@ class IngredientFormSetHelper(FormHelper):
         self.form_class = "ingredient_form"
         self.render_required_fields = True
         self.template = 'bootstrap/table_inline_formset.html'
-
-
-        self.form_method = 'post'
-        self.layout = Layout(
-            'favorite_color',
-            'favorite_food',
-        )
         self.render_required_fields = True,
 
 
