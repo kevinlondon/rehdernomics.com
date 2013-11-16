@@ -8,13 +8,14 @@ from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
 
 class RecipeForm(forms.Form):
     recipe_name = forms.CharField(
+        widget=forms.TextInput(attrs={'class':'name_field'}),
         label="Recipe Name",
         max_length=100,
         required=True,
     )
 
     description = forms.CharField(
-        widget=forms.TextInput(attrs={'class':'description_field', 'size': '400'}),
+        widget=forms.TextInput(attrs={'class':'description_field'}),
         label="Description",
         required=True,
     )

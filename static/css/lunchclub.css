@@ -2,6 +2,12 @@
 	margin-left: 25px;
 }
 
-#description_field {
-    height: 400px;
+input.description_field, input.direction_field {
+    height: 125px;
+    width: 500px;
 }
+
+input.name_field {
+    width: 500px;
+}
+
