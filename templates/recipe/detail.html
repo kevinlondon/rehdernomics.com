@@ -5,11 +5,20 @@
 {% block page_content %}
     <div class="well">
         <a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>
+        <br>
+        {% if recipe.image %}
+            <img src="{{ recipe.image.url }}">
+        {% else %}
+            No Image. Add your own!
+        {% endif %}
         <ul>
             <li>by {{ recipe.author }}</li>
             <li>on {{ recipe.created }}</li>
             <li>Description: {{ recipe.description }}</li>
-            <li>Ingredients: {{ recipe.ingredients.all }}</li>
+            <li>Ingredients:
+            {% for ingredient in recipe.recipeingredient_set.all %}
+                {{ ingredient }}<br>
+            {% endfor %}</li>
             <li>Directions: {{ recipe.directions }}</li>
         </ul>
     </div>

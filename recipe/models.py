@@ -16,7 +16,7 @@ class Recipe(models.Model):
     description = models.TextField()
     directions = models.TextField()
     ingredients = models.ManyToManyField('Ingredient', through="RecipeIngredient")
-    image = models.ImageField(upload_to="recipe_images", null=True)
+    image = models.ImageField(upload_to="recipes/%Y/%m/%d", null=True)
     #ratings = None
     #reviews = None
     #commments = None
@@ -62,6 +62,12 @@ class RecipeIngredient(models.Model):
         return "%s %s %s" % (
             self.quantity, self.ingredient_state, self.ingredient
         )
+
+    def description(self):
+        return "%s %s %s" % (
+            self.quantity, self.ingredient_state, self.ingredient
+        )
+
 
 """
 class PostAdminForm(forms.ModelForm):

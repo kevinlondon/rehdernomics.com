@@ -39,7 +39,7 @@ def new_recipe(request):
 
 def submit_recipe(request):
     if request.method == "POST":
-        recipe_form = RecipeForm(request.POST, prefix="recipe")
+        recipe_form = RecipeForm(request.POST, request.FILES, prefix="recipe")
         ingredient_formset = formset_factory(IngredientForm)
         ingredient_form = ingredient_formset(request.POST, prefix="ingredient")
         if recipe_form.is_valid() and ingredient_form.is_valid():
@@ -57,13 +57,14 @@ def submit_recipe(request):
                     continue
 
                 name = i_info['name']
-                ingredient = Ingredient.objects.get_or_create(name=name)
+                ingredient, created = Ingredient.objects.get_or_create(name=name)
                 requirement = RecipeIngredient.objects.create(
                     recipe=recipe,
                     ingredient=ingredient,
                     quantity=i_info['quantity'],
                     ingredient_state=i_info['state'],
                 )
+
         return redirect(recipe.get_absolute_url())
     else:
         return redirect('recipe_new')

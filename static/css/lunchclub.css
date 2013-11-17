@@ -4,7 +4,9 @@
 
 input.description_field, input.direction_field {
     height: 125px;
+    line-height: 125px;
     width: 500px;
+    padding-top:0;
 }
 
 input.name_field {
