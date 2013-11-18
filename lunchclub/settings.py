@@ -125,6 +125,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'south',
     'crispy_forms',
+    'account',
     'recipe',
     'rehdernomics',
 )
