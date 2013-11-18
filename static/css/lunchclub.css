@@ -2,9 +2,8 @@
 	margin-left: 25px;
 }
 
-input.description_field, input.direction_field {
+textarea.description_field, textarea.direction_field {
     height: 125px;
-    line-height: 125px;
     width: 500px;
     padding-top:0;
 }

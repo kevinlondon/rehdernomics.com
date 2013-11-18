@@ -8,7 +8,12 @@
         <div class="well">
             <div class="row">
                 <div class="span4">
-                    <img class="recipe-image" src="http://placehold.it/200x150">
+                {% if recipe.image %}
+                    <img class="recipe-image" src="{{ recipe.image.url }}">
+                {% else %}
+                    <img class="recipe-image" src="://placehold.it/200x150">
+                }
+                {% endif %}
                 </div>
                 <div class="span6 offset1">
                     <a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>

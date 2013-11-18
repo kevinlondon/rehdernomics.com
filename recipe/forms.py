@@ -15,13 +15,13 @@ class RecipeForm(forms.Form):
     )
 
     description = forms.CharField(
-        widget=forms.TextInput(attrs={'class':'description_field'}),
+        widget=forms.Textarea(attrs={'class':'description_field'}),
         label="Description",
         required=True,
     )
 
     directions = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'direction_field'}),
+        widget=forms.Textarea(attrs={'class': 'direction_field'}),
         label="Recipe Directions",
         required=True,
     )
@@ -45,7 +45,7 @@ class IngredientForm(forms.Form):
         required=False,
     )
 
-    quantity = forms.IntegerField(
+    quantity = forms.CharField(
         label="Quantity",
         required=False,
     )
