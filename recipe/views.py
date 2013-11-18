@@ -39,6 +39,7 @@ def new_recipe(request):
 
 def submit_recipe(request):
     if request.method == "POST":
+        print request.FILES
         recipe_form = RecipeForm(request.POST, request.FILES, prefix="recipe")
         ingredient_formset = formset_factory(IngredientForm)
         ingredient_form = ingredient_formset(request.POST, prefix="ingredient")

@@ -14,7 +14,7 @@
 {% endblock script %}
 
 {% block page_content %}
-<form action="{% url 'recipe_submit' %}" method="post">
+<form action="{% url 'recipe_submit' %}" method="post" enctype="multipart/form-data">
     <h5>Recipe</h5>
     {% crispy recipe_form recipe_form.helper %}
 
@@ -23,7 +23,7 @@
     <input type="button" value="Add Ingredient" id="add_more">
 
     <br>
-    <input type="submit" class="submit-recipe btn btn-primary" value="Save Recipe"/>
+    <input type="submit" class="submit-recipe btn btn-primary" value="Save Recipe" />
 </form>
 
 {% endblock page_content %}
