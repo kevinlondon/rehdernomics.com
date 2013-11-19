@@ -6,7 +6,7 @@
 
         <!-- Styles -->
         <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'font-awesome-4.0.3/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
 
         {% block additional_css %} {% endblock additional_css %}
     </head>
@@ -33,7 +33,7 @@
                             <a href="{% url 'account-login' %}">Login</a>
                         {% else %}
                             <a href="{% url 'account-profile' %}">
-                            <i class="icon-user"></i>
+                            <i class="fa fa-user"></i>
                             {{ user.username }}</a>
                         {% endif %}
                         </li>
