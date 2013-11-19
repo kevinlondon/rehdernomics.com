@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     url(r'^rehdernomics/', include('rehdernomics.urls')),
     url(r'^accounts/', include('account.urls')),
     url(r'^admin/', include(admin.site.urls)),
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     # static files (images, css, javascript, etc.)
@@ -24,5 +24,4 @@ if settings.DEBUG:
 	        'document_root': settings.STATIC_ROOT
         }),
     )
-) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
