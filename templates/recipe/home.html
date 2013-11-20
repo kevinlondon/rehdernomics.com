@@ -2,6 +2,8 @@
 
 {% block page_title %}Lunch Club Recipes | {% endblock page_title %}
 
+{% load ratings %}
+
 {% block page_content %}
     <h1>Lunch Club Recipes</h1>
     {% for recipe in recipes %}
@@ -16,15 +18,14 @@
                 </div>
                 <div class="span6 offset1">
                     <a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>
-                    <ul>
-                        <li>by {{ recipe.author }} on {{ recipe.created }}</li>
-                        <li>Rating: {{ recipe.rating }}({{ recipe.reviews.count }} reviews)</li>
-                    </ul>
+                    <p>by {{ recipe.author }} on {{ recipe.created }}</p>
+                    <p>Rating: {{ recipe.rating.score }} ({{ recipe.rating.votes }} reviews)</p>
                 </div>
             </div>
         </div>
     {% empty %}
         Hm, doesn't look like there's any recipes yet! Please check back soon.
+        <br>
     {% endfor %}
     <a class="btn btn-primary" href="{% url 'recipe_new' %}">Submit Recipe</a>
 {% endblock page_content %}
