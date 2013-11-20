@@ -28,7 +28,7 @@ class RecipeForm(forms.Form):
 
     image = forms.ImageField(
         label="Image",
-        required=False,
+        required=True,
     )
 
     def __init__(self, *args, **kwargs):

@@ -3,5 +3,6 @@
 {% block page_content %}
 
     You're {{ user }}! Welcome!
+    <a href="{% url 'account-password-change' %}">Click here</a> to change your password.
 
 {% endblock %}

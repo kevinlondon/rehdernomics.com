@@ -8,15 +8,23 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding field 'Recipe.image'
-        db.add_column(u'recipe_recipe', 'image',
-                      self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True),
+        # Adding field 'Recipe.rating_votes'
+        db.add_column(u'recipe_recipe', 'rating_votes',
+                      self.gf('django.db.models.fields.PositiveIntegerField')(default=0, blank=True),
+                      keep_default=False)
+
+        # Adding field 'Recipe.rating_score'
+        db.add_column(u'recipe_recipe', 'rating_score',
+                      self.gf('django.db.models.fields.IntegerField')(default=0, blank=True),
                       keep_default=False)
 
 
     def backwards(self, orm):
-        # Deleting field 'Recipe.image'
-        db.delete_column(u'recipe_recipe', 'image')
+        # Deleting field 'Recipe.rating_votes'
+        db.delete_column(u'recipe_recipe', 'rating_votes')
+
+        # Deleting field 'Recipe.rating_score'
+        db.delete_column(u'recipe_recipe', 'rating_score')
 
 
     models = {
@@ -70,6 +78,8 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True'}),
             'ingredients': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['recipe.Ingredient']", 'through': u"orm['recipe.RecipeIngredient']", 'symmetrical': 'False'}),
+            'rating_score': ('django.db.models.fields.IntegerField', [], {'default': '0', 'blank': 'True'}),
+            'rating_votes': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0', 'blank': 'True'}),
             'slug': ('django.db.models.fields.SlugField', [], {'max_length': '40'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },

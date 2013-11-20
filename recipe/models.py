@@ -2,8 +2,9 @@ from django import forms
 from django.db import models
 from django.conf import settings
 
+from djangoratings.fields import RatingField
+
 from .utils import unique_slugify
-#from tinymce.widgets import TinyMCE
 #from taggit.managers import TaggableManager
 
 
@@ -17,9 +18,7 @@ class Recipe(models.Model):
     directions = models.TextField()
     ingredients = models.ManyToManyField('Ingredient', through="RecipeIngredient")
     image = models.ImageField(upload_to="recipes/%Y/%m/%d", null=True)
-    #ratings = None
-    #reviews = None
-    #commments = None
+    rating = RatingField(range=3, weight=3) # 5 possible rating values, 1-5
     #tags = TaggableManager()
 
     def __unicode__(self):
