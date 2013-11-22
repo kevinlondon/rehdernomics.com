@@ -126,6 +126,7 @@ INSTALLED_APPS = (
     'south',
     'crispy_forms',
     'djangoratings',
+    'storages',
     'account',
     'recipe',
     'rehdernomics',
@@ -173,7 +174,15 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 CRISPY_TEMPLATE_PACK = "bootstrap"
 
+AWS_SECRET_KEY = os.environ.get('AWS_ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY = os.environ.get('SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('S3_BUCKET_NAME')
+AWS_QUERYSTRING_AUTH = False
+AWS_HEADERS = {
+    'Cache-Control': 'max-age=86400',
+}
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
-
-
-
+STATIC_URL = "https://%s.s3.amazonaws.com/" % AWS_STORAGE_BUCKET_NAME
+STATIC_ROOT = ''
