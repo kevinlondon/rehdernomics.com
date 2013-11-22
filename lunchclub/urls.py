@@ -12,16 +12,7 @@ urlpatterns = patterns('',
     url(r'^rehdernomics/', include('rehdernomics.urls')),
     url(r'^accounts/', include('account.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes': True, }),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT, 'show_indexes': True, }),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-if settings.DEBUG:
-    # static files (images, css, javascript, etc.)
-    urlpatterns += patterns('',
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-	        'document_root': settings.MEDIA_ROOT,
-        }),
-        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {
-	        'document_root': settings.STATIC_ROOT
-        }),
-    )
 
