@@ -8,13 +8,28 @@
 
 <script>
     $('#add_more').click(function() {
-        cloneMore('tr:last', 'service');
+        cloneMore('tr:last', 'ingredient');
     });
+
+   $( "#full-recipe-form" ).submit(function( event ) {
+        var fields = ["name", "description", "directions", "image"]
+        for (fieldnum in fields) {
+            fieldname = fields[fieldnum];
+            if ($("#id_recipe-" + fieldname).val() == "") {
+                alert("Please enter the recipe " + fieldname + ".");
+                $("#id_recipe-" + fieldname).focus();
+                event.preventDefault();
+                return;
+            }
+        }
+    });
+
+
 </script>
 {% endblock script %}
 
 {% block page_content %}
-<form action="{% url 'recipe_submit' %}" method="post" enctype="multipart/form-data">
+<form id="full-recipe-form" action="{% url 'recipe_submit' %}" method="post" enctype="multipart/form-data">
     <h5>Recipe</h5>
     {% crispy recipe_form recipe_form.helper %}
 
@@ -23,7 +38,7 @@
     <input type="button" value="Add Ingredient" id="add_more">
 
     <br>
-    <input type="submit" class="submit-recipe btn btn-primary" value="Save Recipe" />
+    <input type="submit" class="submit-recipe btn btn-primary" value="Save Recipe" method="post"/>
 </form>
 
 {% endblock page_content %}

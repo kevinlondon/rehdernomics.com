@@ -46,7 +46,7 @@ def submit_recipe(request):
         if recipe_form.is_valid() and ingredient_form.is_valid():
             r_info = recipe_form.cleaned_data
             recipe = Recipe.objects.create(
-                title=r_info['recipe_name'],
+                title=r_info['name'],
                 author=request.user,
                 description=r_info['description'],
                 directions=r_info['directions'],
@@ -66,8 +66,8 @@ def submit_recipe(request):
                     ingredient_state=i_info['state'],
                 )
 
-        return redirect(recipe.get_absolute_url())
-    else:
+            return redirect(recipe.get_absolute_url())
+
         return redirect('recipe_new')
 
 
