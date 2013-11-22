@@ -2,6 +2,7 @@
 
 {% block page_title %}{{ recipe.title }} | {% endblock page_title %}
 
+
 {% load ratings %}
 
 {% block page_content %}
@@ -18,7 +19,7 @@
             <div class="span6 offset1">
                 <h2><a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a></h2>
                 <p>by {{ recipe.author }} on {{ recipe.created }}</p>
-                <p>{{ recipe.description }}</p>
+                <p>{{ recipe.description|linebreaks }}</p>
             </div>
         </div>
 
@@ -32,7 +33,7 @@
         </ul>
 
         <h3>Directions</h3>
-        <p>{{ recipe.directions }}</p>
+        <p>{{ recipe.directions|linebreaks }}</p>
         </ul>
     </div>
 {% endblock page_content %}
