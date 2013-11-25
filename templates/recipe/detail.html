@@ -1,6 +1,6 @@
 {% extends "recipe/base.html" %}
 
-{% block page_title %}{{ recipe.title }} | {% endblock page_title %}
+{% block page_title %}{{ recipe.title|title }} | {% endblock page_title %}
 
 
 {% load ratings %}
@@ -17,7 +17,7 @@
             </div>
 
             <div class="span6 offset1">
-                <h2><a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a></h2>
+                <h2><a href="{{ recipe.get_absolute_url }}">{{ recipe.title|title }}</a></h2>
                 <p>by {{ recipe.author }} on {{ recipe.created }}</p>
                 <p>{{ recipe.description|linebreaks }}</p>
             </div>
@@ -28,7 +28,7 @@
         <h3>Ingredients</h3>
         <ul>
             {% for ingredient in recipe.recipeingredient_set.all %}
-                <li>{{ ingredient }}</li>
+                <li>{{ ingredient|title }}</li>
             {% endfor %}
         </ul>
 
