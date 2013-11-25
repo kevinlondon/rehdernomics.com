@@ -2,13 +2,13 @@
 	margin-left: 25px;
 }
 
-textarea.description_field, textarea.direction_field {
+textarea.direction_field {
     height: 125px;
     width: 500px;
     padding-top:0;
 }
 
-input.name_field {
+input.description_field, input.name_field {
     width: 500px;
 }
 

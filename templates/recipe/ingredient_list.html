@@ -1,0 +1,14 @@
+{% extends "recipe/base.html" %}
+
+{% block page_title %}Lunch Club Recipes | {% endblock page_title %}
+
+{% load ratings %}
+
+{% block page_content %}
+    <h1>Ingredients</h1>
+    <ul>
+    {% for ingredient in ingredients %}
+        <li><a href="{% url 'recipe_ingredient_search' ingredient.id %}">{{ ingredient.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock page_content %}

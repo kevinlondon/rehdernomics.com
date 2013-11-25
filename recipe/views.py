@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.syndication.views import Feed
 from django.contrib.auth.decorators import login_required
 from django.forms.formsets import formset_factory
+from django.views.generic import ListView, DetailView
 
 from .models import Recipe, Ingredient, RecipeIngredient
 from .forms import RecipeForm, IngredientForm, IngredientFormSetHelper
@@ -37,9 +38,29 @@ def new_recipe(request):
     })
 
 
+class IngredientListView(ListView):
+    context_object_name = "ingredients"
+    template_name = "recipe/ingredient_list.html"
+    queryset = Ingredient.objects.all()
+
+
+class IngredientRecipeList(ListView):
+    context_object_name = "recipes"
+    template_name = "recipe/ingredient_recipes.html"
+    model = Ingredient
+
+    def get_queryset(self):
+        self.ingredient = get_object_or_404(Ingredient, pk=self.kwargs['pk'])
+        return Recipe.objects.filter(ingredients__name=self.ingredient.name)
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(IngredientRecipeList, self).get_context_data(**kwargs)
+        context['ingredient'] = self.ingredient
+        return context
+
 def submit_recipe(request):
     if request.method == "POST":
-        print request.FILES
         recipe_form = RecipeForm(request.POST, request.FILES, prefix="recipe")
         ingredient_formset = formset_factory(IngredientForm)
         ingredient_form = ingredient_formset(request.POST, prefix="ingredient")

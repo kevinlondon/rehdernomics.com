@@ -15,7 +15,7 @@ class RecipeForm(forms.Form):
     )
 
     description = forms.CharField(
-        widget=forms.Textarea(attrs={'class':'description_field'}),
+        widget=forms.TextInput(attrs={'class':'description_field'}),
         label="Description",
         required=True,
     )
