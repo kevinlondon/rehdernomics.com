@@ -1,9 +1,8 @@
 from django import forms
-from django.forms.formsets import formset_factory
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
-from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
+
+from .widgets import StarsRadioFieldRenderer
 
 
 class RecipeForm(forms.Form):
@@ -37,6 +36,17 @@ class RecipeForm(forms.Form):
         self.helper.form_id = 'id-recipe_form'
         self.helper.form_tag = False
         self.helper.form_class = 'recipe_form'
+
+
+class RecipeRatingForm(forms.Form):
+    RATING_CHOICES = ((1, 1), (2, 2), (3, 3))
+    rating = forms.ChoiceField(
+        widget=forms.RadioSelect(
+            renderer=StarsRadioFieldRenderer,
+            attrs={'class': 'star'},
+        ),
+        choices=RATING_CHOICES,
+    )
 
 
 class IngredientForm(forms.Form):

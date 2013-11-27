@@ -3,11 +3,42 @@
 {% block page_title %}{{ recipe.title|title }} | {% endblock page_title %}
 
 
+{% load crispy_forms_tags %}
+{% load staticfiles %}
 {% load thumbnail %}
+{% load get_range %}
 {% load ratings %}
 
 {% block script %}
+    <script type="text/javascript" src="{% static 'star-rating/jquery.rating.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/csrf-token.js' %}"></script>
+    <script>
+    $(document).ready(function() {
+        $(".star").click(function() {
+            var rating_id = $(this).attr("id");
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'recipe_rate' %}",
+                data: {"recipe_id": {{ recipe.id }}, "rating_id": rating_id}
+                ,
+                dataType: 'json',
+                success: function(data){
+                    if (data){
+
+                    }
+                    else{
+                        confirm(data.status);
+                    }
+                }
+            });
+        });
+    })
+    </script>
 {% endblock script %}
+
+{% block additional_css %}
+    <link rel="stylesheet" href="{% static 'star-rating/jquery.rating.css' %}">
+{% endblock additional_css %}
 
 {% block page_content %}
     <div class="well">
@@ -26,6 +57,23 @@
                 <h2><a href="{{ recipe.get_absolute_url }}">{{ recipe.title|title }}</a></h2>
                 <p>by {{ recipe.author }} on {{ recipe.created }}</p>
                 <p>{{ recipe.description|linebreaks }}</p>
+                {% rating_by_user user on recipe.rating as vote %}
+                {% if not vote %}
+                    {{ recipe_rating_form.as_p }}
+                {% else %}
+                    <p>
+                    Your Vote:
+                    <br>
+                    {% for i in 3|get_range %}
+                        <input name="star" type="radio" class="star" disabled="disabled"
+                        {% if i < vote %}
+                            checked="checked"
+                        {% endif %}
+                         />
+                    {% endfor %}
+                    </p>
+                {% endif %}
+
             </div>
 
         </div>

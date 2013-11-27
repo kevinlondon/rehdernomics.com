@@ -6,7 +6,7 @@ from django.forms.formsets import formset_factory
 from django.views.generic import ListView, DetailView
 
 from .models import Recipe, Ingredient, RecipeIngredient
-from .forms import RecipeForm, IngredientForm, IngredientFormSetHelper
+from .forms import RecipeForm, IngredientForm, IngredientFormSetHelper, RecipeRatingForm
 
 
 def landing_page(request):
@@ -38,6 +38,17 @@ def new_recipe(request):
     })
 
 
+class RecipeDetailView(DetailView):
+    template_name = "recipe/detail.html"
+    model = Recipe
+
+    def get_context_data(self, **kwargs):
+        context = super(RecipeDetailView, self).get_context_data(**kwargs)
+        context['recipe_rating_form'] = RecipeRatingForm()
+        return context
+
+
+
 class IngredientListView(ListView):
     context_object_name = "ingredients"
     template_name = "recipe/ingredient_list.html"
@@ -58,6 +69,19 @@ class IngredientRecipeList(ListView):
         context = super(IngredientRecipeList, self).get_context_data(**kwargs)
         context['ingredient'] = self.ingredient
         return context
+
+
+def submit_rating(request):
+    if request.method == "POST":
+        recipe_id = request.POST["recipe_id"]
+        rating_id = request.POST['rating_id']
+        rating = int(rating_id[-1]) + 1
+        recipe = get_object_or_404(Recipe, pk=recipe_id)
+
+        recipe.rating.add(score=rating, user=request.user, ip_address=request.META['REMOTE_ADDR'])
+        print "Saved rating", rating
+
+    return None
 
 def submit_recipe(request):
     if request.method == "POST":
