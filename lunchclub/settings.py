@@ -64,6 +64,10 @@ MEDIA_URL = '/media/'
 # Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = '/static/'
 
+if DEBUG:
+    #STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+    pass
+
 # Additional locations of static files
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, "static"),

@@ -9,8 +9,11 @@ django-ratings==0.3.7
 django-storages==1.1.8
 django-toolbelt==0.0.1
 django-wysiwyg==0.5.1
+easy-thumbnails==1.4
 factory-boy==2.1.2
 gunicorn==18.0
 psycopg2==2.5.1
+simplejson==3.3.1
+six==1.4.1
 static==0.4
 wsgiref==0.1.2

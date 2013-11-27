@@ -6,6 +6,9 @@
 {% load thumbnail %}
 {% load ratings %}
 
+{% block script %}
+{% endblock script %}
+
 {% block page_content %}
     <div class="well">
         <div class="row-fluid">
@@ -24,6 +27,7 @@
                 <p>by {{ recipe.author }} on {{ recipe.created }}</p>
                 <p>{{ recipe.description|linebreaks }}</p>
             </div>
+
         </div>
 
         <hr />
