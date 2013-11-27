@@ -39,7 +39,7 @@ class RecipeForm(forms.Form):
 
 
 class RecipeRatingForm(forms.Form):
-    RATING_CHOICES = ((1, 1), (2, 2), (3, 3))
+    RATING_CHOICES = [(x, x) for x in xrange(1, 6)]
     rating = forms.ChoiceField(
         widget=forms.RadioSelect(
             renderer=StarsRadioFieldRenderer,

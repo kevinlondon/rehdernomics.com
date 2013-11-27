@@ -85,12 +85,6 @@ AWS_HEADERS = {
     'Cache-Control': 'max-age=86400',
 }
 
-if not DEBUG:
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-
-    STATIC_URL = "https://%s.s3.amazonaws.com/" % AWS_STORAGE_BUCKET_NAME
-    STATIC_ROOT = ''
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -195,3 +189,15 @@ THUMBNAIL_ALIASES = {
         'recipe_detail': {'size': (400, 300), 'crop': "smart"},
     }
 }
+
+if not DEBUG:
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+    STATIC_URL = "https://%s.s3.amazonaws.com/" % AWS_STORAGE_BUCKET_NAME
+    STATIC_ROOT = ''
+
+    THUMBNAIL_SUBDIR = "_thumbs" # subdirectory name to store thumbs
+    THUMBNAIL_PREFIX = "thumbs_" # filename prefix for thumbnails
+    THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto.S3BotoStorage' #storage backend for thumbnails
+

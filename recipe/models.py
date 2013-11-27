@@ -17,7 +17,7 @@ class Recipe(models.Model):
     directions = models.TextField()
     ingredients = models.ManyToManyField('Ingredient', through="RecipeIngredient")
     image = models.ImageField(upload_to="recipes/%Y/%m/%d", null=True)
-    rating = RatingField(range=3, weight=3) # 5 possible rating values, 1-5
+    rating = RatingField(range=5, weight=3) # 5 possible rating values, 1-5
 
     def __unicode__(self):
         return self.title
