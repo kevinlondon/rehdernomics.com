@@ -15,7 +15,7 @@
                 <div class="span4">
                 {% if recipe.image %}
                     <a href="{{ recipe.get_absolute_url }}">
-                        <img class="recipe-image" src="{{ recipe.image|thumbnail_url:'recipe_thumb' }}">
+                        <img class="recipe-image" src="{{ recipe.image.url }}">
                     </a>
                 {% endif %}
                 </div>
