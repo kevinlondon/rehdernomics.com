@@ -42,7 +42,7 @@
             <div class="span5">
                 {% if recipe.image %}
                     <a href="{{ recipe.image.url }}">
-                        <img src="{{ recipe.image.url }}">
+                        <img src="{{ recipe.image|thumbnail_url:'recipe_detail' }}">
                     </a>
                 {% else %}
                     No Image. Add your own!
