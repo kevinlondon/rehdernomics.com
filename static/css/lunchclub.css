@@ -21,3 +21,6 @@ input.description_field, input.name_field {
     font-size: 12px;
 }
 
+ul.recipe-summary {
+  list-style-type: none;
+}
