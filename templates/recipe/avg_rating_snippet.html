@@ -1,3 +1,5 @@
-{% with votes=recipe.rating.votes %}
-    {% include "recipe/rating_snippet.html" with rating=recipe.rating.score name=recipe.id %} ({{ recipe.rating.votes }} vote{{ votes|pluralize }})
-{% endwith %}
+<div class="rating">
+    {% with votes=recipe.rating.votes %}
+        {% include "recipe/rating_snippet.html" with rating=recipe.rating.score name=recipe.id %} ({{ recipe.rating.votes }} vote{{ votes|pluralize }})
+    {% endwith %}
+</div>
