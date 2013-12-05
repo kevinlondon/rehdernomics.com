@@ -36,13 +36,17 @@
     </script>
 {% endblock script %}
 
+{% block additional_css %}
+    <link rel="stylesheet" href="{% static 'star-rating/jquery.rating.css' %}">
+{% endblock additional_css %}
+
 {% block page_content %}
     <div class="well">
         <div class="row-fluid">
             <div class="span5">
                 {% if recipe.image %}
                     <a href="{{ recipe.image.url }}">
-                        <img src="{{ recipe.image|thumbnail_url:'recipe_detail' }}">
+                        <img src="{{ recipe.image.url }}">
                     </a>
                 {% else %}
                     No Image. Add your own!
@@ -63,9 +67,9 @@
                             {% include "recipe/rating_snippet.html" with rating=vote %}
                         </div>
                     {% endif %}
+                    <hr>
                 {% endif %}
-                <br>
-                Average: {% include "recipe/avg_rating_snippet.html" with recipe=recipe %}
+                <p>Average: {% include "recipe/avg_rating_snippet.html" with recipe=recipe %} </p>
             </div>
 
         </div>
