@@ -57,10 +57,12 @@
                 <h2><a href="{{ recipe.get_absolute_url }}">{{ recipe.title|title }}</a></h2>
                 <p>by {{ recipe.author }} on {{ recipe.created }}</p>
                 <p>{{ recipe.description|linebreaks }}</p>
-                {% rating_by_user user on recipe.rating as vote %}
-                {% if not vote %}
-                    {{ recipe_rating_form.as_p }}
-                {% else %}
+                {% if user.is_authenticated %}
+                    {% rating_by_user user on recipe.rating as vote %}
+                    {% if not vote %}
+                        {{ recipe_rating_form.as_p }}
+                    {% else %}
+                {% endif %}
                     <p>
                     Your Vote:
                     <br>
