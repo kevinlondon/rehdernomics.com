@@ -5,7 +5,16 @@
 {% block head %}
     {% load thumbnail %}
     {% load ratings %}
+    {% load staticfiles %}
 {% endblock head %}
+
+{% block additional_css %}
+    <link rel="stylesheet" href="{% static 'star-rating/jquery.rating.css' %}">
+{% endblock additional_css %}
+
+{% block script %}
+    <script type="text/javascript" src="{% static 'star-rating/jquery.rating.js' %}"></script>
+{% endblock script %}
 
 {% block page_content %}
     <h1>Lunch Club Recipes</h1>
@@ -21,9 +30,11 @@
                 </div>
 
                 <div class="span6 offset1">
-                    <a href="{{ recipe.get_absolute_url }}">{{ recipe.title|title }}</a>
-                    <p>by {{ recipe.author }} on {{ recipe.created }}</p>
-                    <p>Rating: {{ recipe.rating.score }} ({{ recipe.rating.votes }} reviews)</p>
+                    <ul class="recipe-summary">
+                        <li><a href="{{ recipe.get_absolute_url }}">{{ recipe.title|title }}</a></li>
+                        <li>by {{ recipe.author }} on {{ recipe.created }}</li>
+                        <li>{% include "recipe/avg_rating_snippet.html" with recipe=recipe %}</li>
+                    </ul>
                 </div>
             </div>
         </div>

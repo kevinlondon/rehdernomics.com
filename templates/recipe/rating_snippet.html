@@ -1,0 +1,9 @@
+{% load get_range %}
+
+{% for x in 5|get_range %}
+    <input name="{{ name }}" type="radio" class="star" disabled="disabled"
+        {% if x < rating %}
+            checked="checked"
+        {% endif %}
+    />
+{% endfor %}

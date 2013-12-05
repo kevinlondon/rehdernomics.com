@@ -57,25 +57,21 @@
                 <h2><a href="{{ recipe.get_absolute_url }}">{{ recipe.title|title }}</a></h2>
                 <p>by {{ recipe.author }} on {{ recipe.created }}</p>
                 <p>{{ recipe.description|linebreaks }}</p>
+                <div class="ratings">
                 {% if user.is_authenticated %}
                     {% rating_by_user user on recipe.rating as vote %}
                     {% if not vote %}
                         {{ recipe_rating_form.as_p }}
                     {% else %}
-                {% endif %}
                     <p>
-                    Your Vote:
-                    <br>
-                    {% for i in 5|get_range %}
-                        <input name="star" type="radio" class="star" disabled="disabled"
-                        {% if i < vote %}
-                            checked="checked"
-                        {% endif %}
-                         />
-                    {% endfor %}
+                        Your Vote:
+                        {% include "recipe/rating_snippet.html" with rating=vote name="your" %}
                     </p>
+                    {% endif %}
                 {% endif %}
-
+                <p>
+                    {% include "recipe/avg_rating_snippet.html" with recipe=recipe %}
+                </p>
             </div>
 
         </div>
